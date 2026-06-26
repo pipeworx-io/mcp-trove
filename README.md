@@ -1,0 +1,57 @@
+# mcp-trove
+
+Trove MCP.
+
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1102+ live data sources.
+
+## Tools
+
+| Tool | Description |
+|------|-------------|
+| `search` | Search the Trove collection by keyword. Returns matching items with ids (pass an id to work), titles, creators/sources, dates and links. |
+| `work` | Fetch full details for one Trove item by id — a Trove work id (from search). |
+
+## Quick Start
+
+Add to your MCP client (Claude Desktop, Cursor, Windsurf, etc.):
+
+```json
+{
+  "mcpServers": {
+    "trove": {
+      "url": "https://gateway.pipeworx.io/trove/mcp"
+    }
+  }
+}
+```
+
+Or connect to the full Pipeworx gateway for access to all 1102+ data sources:
+
+```json
+{
+  "mcpServers": {
+    "pipeworx": {
+      "url": "https://gateway.pipeworx.io/mcp"
+    }
+  }
+}
+```
+
+## Using with ask_pipeworx
+
+Instead of calling tools directly, you can ask questions in plain English:
+
+```
+ask_pipeworx({ question: "your question about Trove data" })
+```
+
+The gateway picks the right tool and fills the arguments automatically.
+
+## More
+
+- [All tools and guides](https://github.com/pipeworx-io/examples)
+- [pipeworx.io](https://pipeworx.io)
+
+## License
+
+MIT
