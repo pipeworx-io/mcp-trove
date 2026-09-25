@@ -2,14 +2,14 @@
 
 Trove MCP.
 
-Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1476+ live data sources.
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1679+ live data sources.
 
 ## Tools
 
 | Tool | Description |
 |------|-------------|
-| `search` | Search the Trove collection by keyword. Returns matching items with ids (pass an id to work), titles, creators/sources, dates and links. |
-| `work` | Fetch full details for one Trove item by id — a Trove work id (from search). |
+| `search` | Search the Trove collection by keyword. Returns matching items with ids (pass an id to work), titles, creators/sources, dates and links. Requires your own free Trove API key, passed as _apiKey. |
+| `work` | Fetch full details for one Trove item by id — a Trove work id (from search). Requires your own free Trove API key, passed as _apiKey. |
 
 ## Quick Start
 
@@ -55,9 +55,45 @@ directly, instead of just this one's:
 }
 ```
 
-Both URLs reach the same gateway and the same 1476+ data sources. The
+Both URLs reach the same gateway and the same 1679+ data sources. The
 only difference is which pack's tools are listed **directly**; `ask_pipeworx`
 reaches all of them from either one.
+
+## No MCP client? Call it over HTTP
+
+```bash
+curl -X POST https://gateway.pipeworx.io/v1/tools/trove_search \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"Australian Aboriginal art"}'
+```
+
+No account needed for the first calls. Inspect any tool: `GET https://gateway.pipeworx.io/v1/tools/trove_search`. Find one: `POST https://gateway.pipeworx.io/v1/tools/search_packs` with `{"query":"..."}`.
+
+## Standalone (no gateway account)
+
+This package also runs as a local stdio MCP server — no Pipeworx account, no
+gateway round-trip:
+
+```json
+{
+  "mcpServers": {
+    "trove": {
+      "command": "npx",
+      "args": ["-y", "@pipeworx/mcp-trove"]
+    }
+  }
+}
+```
+
+Or run it directly to confirm it starts:
+
+```bash
+npx -y @pipeworx/mcp-trove
+```
+
+It speaks MCP over stdin/stdout and answers `initialize`/`tools/list`/`tools/call`
+for **only** this pack's tools — none of the shared meta-tools the gateway
+connection above adds. Same source, same tools, no ask_pipeworx routing.
 
 ## Using with ask_pipeworx
 
@@ -78,13 +114,3 @@ The gateway picks the right tool and fills the arguments automatically.
 ## License
 
 MIT
-
-## No MCP client? Call it over HTTP
-
-```bash
-curl -X POST https://gateway.pipeworx.io/v1/tools/trove_search \
-  -H 'Content-Type: application/json' \
-  -d '{"query":"Australian Aboriginal art"}'
-```
-
-No account needed for the first calls. Inspect any tool: `GET https://gateway.pipeworx.io/v1/tools/trove_search`. Find one: `POST https://gateway.pipeworx.io/v1/tools/search_packs` with `{"query":"..."}`.
