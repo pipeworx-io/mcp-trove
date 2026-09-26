@@ -1,6 +1,6 @@
 {
   "name": "@pipeworx/mcp-trove",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Trove MCP.",
   "type": "module",
   "main": "src/index.ts",
@@ -26,7 +26,7 @@
     "@cloudflare/workers-types": "^4.20260405.1"
   },
   "pipeworx": {
-    "sourceHash": "v1-28d07269f55538ecd8d5cbd4f4ae27f4c7d06ab540006acdaf5bd1c36c6b1c33",
-    "sourceCommit": "b0fb3c31386cf0256dcf1e2f1b3440435a87ec35"
+    "sourceHash": "v1-42fb0c84cfdf62efcb0abfab4fbc3c825bfd519069714a247d2087f4d2203967",
+    "sourceCommit": "66a0692f029179984440cef6938cba7fdd41d66d"
   }
 }
