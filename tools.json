@@ -1,0 +1,52 @@
+[
+  {
+    "name": "search",
+    "description": "Search the Trove collection by keyword. Returns matching items with ids (pass an id to work), titles, creators/sources, dates and links. Requires your own free Trove API key, passed as _apiKey.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Keyword(s)."
+        },
+        "limit": {
+          "type": "number",
+          "description": "Max results (1-100, default 20)."
+        },
+        "page": {
+          "type": "number",
+          "description": "Page (1-based, default 1)."
+        },
+        "_apiKey": {
+          "type": "string",
+          "description": "Your own Trove API key (BYO — Pipeworx does not supply one). Free at trove.nla.gov.au: create an account, then Create an API key."
+        }
+      },
+      "required": [
+        "query",
+        "_apiKey"
+      ]
+    }
+  },
+  {
+    "name": "work",
+    "description": "Fetch full details for one Trove item by id — a Trove work id (from search). Requires your own free Trove API key, passed as _apiKey.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "e.g. \"12345\"."
+        },
+        "_apiKey": {
+          "type": "string",
+          "description": "Your own Trove API key (BYO — Pipeworx does not supply one). Free at trove.nla.gov.au: create an account, then Create an API key."
+        }
+      },
+      "required": [
+        "id",
+        "_apiKey"
+      ]
+    }
+  }
+]
